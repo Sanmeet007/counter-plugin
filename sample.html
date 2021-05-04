@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Sample Counter Plugin </title>
+</head>
+<body>
+  <span id="counter"></span>
+
+  <script src="./counter.js" type="text/javascript" charset="utf-8"></script>
+
+  <script type="text/javascript" charset="utf-8">
+
+    let count_start = new Counter ("#counter", {
+      counter_value: 100,
+      speed: 100,
+      increment_value: 1,
+      delay: 1000,
+      stop_at_max: true,
+      max_value: 10000
+    });
+
+
+  </script>
+</body>
+</html>
