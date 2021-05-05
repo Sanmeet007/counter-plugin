@@ -8,12 +8,12 @@
 *
 * increment_value : increases the value every time interval rolls with value defined !
 *
-* delay : make it zero for no delay . sets the delay of the timer .
+* delay : make it zero for no delay . sets the delay of the Counter .
 *
 * stop_at_max : takes 2 values true or false ,
-* if false => then indefinite increase in timer . if true => rises to maximum and then stops at max_value.
+* if false => then indefinite increase in Counter . if true => rises to maximum and then stops at max_value.
 *
-* max_value : after which (if stop_at_max is set to be true) the timer  stops
+* max_value : after which (if stop_at_max is set to be true) the Counter  stops
 */
 
 
@@ -29,14 +29,14 @@ class Counter {
       if (this.state.start == false) {
         // Do nothing 
       }else{
-        this.startTimer();
+        this.startCounter();
       }
     }else{
       this.state.start = true;
-      this.startTimer();
+      this.startCounter();
     }
   }
-  startTimer = ()=> {
+  startCounter = ()=> {
     const self = this;
     setTimeout(function() {
       self.interval = setInterval(()=> {
@@ -53,13 +53,13 @@ class Counter {
 
     }, this.state.delay);
   }
-  stopTimer = ()=> {
+  stopCounter = ()=> {
     clearInterval(this.interval);
     this.state.counter_value = this.initial_counter_value;
     this.state.delay = 0;
     this.element.innerText = this.initial_counter_value;
   }
-  pauseTimer = ()=> {
+  pauseCounter = ()=> {
     clearInterval(this.interval);
     this.state.delay = 0;
   }
