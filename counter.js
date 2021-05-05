@@ -20,22 +20,24 @@
 class Counter {
 
   constructor(element, state) {
-
     this.element = document.querySelector(element);
-
+    this.interval = null;
     this.state = state;
-    this.startTimer();
-
+    this.initial_counter_value = this.state.counter_value;
+    if (this.state.start != null && this.state.start != undefined) {
+      if (this.state.start == true) {
+        this.startTimer();
+      }
+    }
   }
-  startTimer = (time)=> {
-    self = this;
+  startTimer = ()=> {
+    const self = this;
     setTimeout(function() {
-      let  interval = setInterval(()=> {
+      self.interval = setInterval(()=> {
         self.state.counter_value += self.state.increment_value;
-
         if (self.state.stop_at_max) {
           if (self.state.counter_value >= self.state.max_value) {
-            clearInterval(interval);
+            clearInterval(self.interval);
           }
         }
         self.element.innerText = self.state.counter_value;
@@ -44,5 +46,15 @@ class Counter {
         self.state.speed);
 
     }, this.state.delay);
+  }
+  stopTimer = ()=> {
+    clearInterval(this.interval);
+    this.state.counter_value = this.initial_counter_value;
+    this.state.delay = 0;
+    this.element.innerText = this.initial_counter_value;
+  }
+  pauseTimer = ()=> {
+    clearInterval(this.interval);
+    this.state.delay = 0;
   }
 }
