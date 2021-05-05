@@ -25,9 +25,15 @@ class Counter {
     this.state = state;
     this.initial_counter_value = this.state.counter_value;
     if (this.state.start != null && this.state.start != undefined) {
-      if (this.state.start == true) {
+      
+      if (this.state.start == false) {
+        // Do nothing 
+      }else{
         this.startTimer();
       }
+    }else{
+      this.state.start = true;
+      this.startTimer();
     }
   }
   startTimer = ()=> {
